@@ -1,6 +1,9 @@
+
+import 'package:bmi/blocs/cubit/bmi_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../screan/gender.dart';
 
@@ -9,14 +12,13 @@ class AppRoot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        backgroundColor: Color(0xfff8fbfc),
-        textTheme: TextTheme(
-          headline2: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-        ),
+    return MultiBlocProvider(
+      providers: [
+       BlocProvider(create: (context)=>BmiCubit()),
+      ],
+      child: MaterialApp(
+        home: GenderScrean(),
       ),
-      home: GenderScrean(),
     );
   }
 }
